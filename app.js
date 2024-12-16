@@ -32,7 +32,7 @@ async function getWeather(city) {
     }
     const weatherData = await response.json();
     //console.log(weatherData.currentConditions);
-    return weatherData.currentConditions;
+    return weatherData;
   } catch (err) {
     console.log("Error: " + err.message);
   }
@@ -40,44 +40,76 @@ async function getWeather(city) {
 
 function displayWeatherData(weatherData) {
   if (weatherData) {
+    document.querySelector("#conditions .elements").textContent =
+      "Conditions: ";
     document.querySelector(
-      "#conditions"
-    ).textContent = `Conditions: ${weatherData.conditions}`;
+      "#conditions .weather-data"
+    ).textContent = `${weatherData.currentConditions.conditions}`;
+
+    document.querySelector("#feels-like .elements").textContent =
+      "Feels Like: ";
     document.querySelector(
-      "#feels-like"
-    ).textContent = `Feels-like: ${weatherData.feelslike}C`;
+      "#feels-like .weather-data"
+    ).textContent = `${weatherData.currentConditions.feelslike} C`;
+
+    document.querySelector("#humidity .elements").textContent = "Humidity: ";
     document.querySelector(
-      "#humidity"
-    ).textContent = `Humidity: ${weatherData.humidity}%`;
+      "#humidity .weather-data"
+    ).textContent = `${weatherData.currentConditions.humidity}%`;
+
     document.querySelector(
-      "#precipitation"
-    ).textContent = `Precipitation: ${weatherData.precip}mm`;
+      "#precipitation .elements"
+    ).textContent = `Precipitation: `;
     document.querySelector(
-      "#precipitation-probability"
-    ).textContent = `Precipitation probability: ${weatherData.precipprob}%`;
+      "#precipitation .weather-data"
+    ).textContent = `${weatherData.currentConditions.precip} mm`;
+
     document.querySelector(
-      "#sunrise"
-    ).textContent = `Sunrise: ${weatherData.sunrise}`;
+      "#precipitation-probability .elements"
+    ).textContent = `Precipitation probability: `;
     document.querySelector(
-      "#sunset"
-    ).textContent = `Sunset: ${weatherData.sunset}`;
+      "#precipitation-probability .weather-data"
+    ).textContent = `${weatherData.currentConditions.precipprob}%`;
+
+    document.querySelector("#sunrise .elements").textContent = `Sunrise: `;
     document.querySelector(
-      "#temperature"
-    ).textContent = `Temperature: ${weatherData.temp}`;
+      "#sunrise .weather-data"
+    ).textContent = `${weatherData.currentConditions.sunrise}`;
+
+    document.querySelector("#sunset .elements").textContent = `Sunset: `;
     document.querySelector(
-      "#uv"
-    ).textContent = `UV Index: ${weatherData.uvindex}`;
+      "#sunset .weather-data"
+    ).textContent = `${weatherData.currentConditions.sunset}`;
+
+    document.querySelector(
+      "#temperature .elements"
+    ).textContent = `Temperature: `;
+    document.querySelector(
+      "#temperature .weather-data"
+    ).textContent = `${weatherData.currentConditions.temp}`;
+
+    document.querySelector("#uv .elements").textContent = `UV Index:`;
+    document.querySelector(
+      "#uv .weather-data"
+    ).textContent = `${weatherData.currentConditions.uvindex}`;
   }
+}
+
+function generateHeadline(city) {
+  document.querySelector(
+    "h1.location"
+  ).textContent = `Current Weather for ${city}`;
 }
 
 const submitBtn = document.querySelector("#submit");
 submitBtn.addEventListener("click", async () => {
   const inputValue = document.querySelector("#city").value;
-  console.log(inputValue);
+  console.log(typeof inputValue);
   if (inputValue.trim().length === 0) {
     console.log("Please enter a city.");
   } else {
     const weatherData = await getWeather(inputValue);
+    generateHeadline(weatherData.resolvedAddress);
     displayWeatherData(weatherData);
     console.log(weatherData);
   }
