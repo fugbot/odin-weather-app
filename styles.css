@@ -1,0 +1,26 @@
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.city-input {
+  display: inline-grid;
+  gap: 4px;
+  border: 2px #3878e7 solid;
+  padding: 4px;
+}
+
+#submit {
+  background-color: #3878e7;
+  color: #ffffff;
+  border: none;
+  padding: 16px 20px;
+}
+
+.weather {
+  display: grid;
+  gap: 4px;
+}
+
+.elements {
+  font-weight: 600;
+}
