@@ -7,21 +7,51 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div>
-      <label for="city">City: </label>
-      <input type="text" id="city" name="city" required />
+    <div class="city-input">
+      <div>
+        <label for="city">Enter a city: </label>
+        <input type="text" id="city" name="city" required />
+      </div>
+      <button id="submit">Submit</button>
     </div>
-    <button id="submit">Submit</button>
+    <h1 class="location"></h1>
     <div class="weather">
-      <div id="conditions"></div>
-      <div id="feels-like"></div>
-      <div id="humidity"></div>
-      <div id="precipitation"></div>
-      <div id="precipitation-probability"></div>
-      <div id="sunrise"></div>
-      <div id="sunset"></div>
-      <div id="temperature"></div>
-      <div id="uv"></div>
+      <div id="conditions">
+        <span class="elements"></span>
+        <span class="weather-data"></span>
+      </div>
+      <div id="feels-like">
+        <span class="elements"></span>
+        <span class="weather-data"></span>
+      </div>
+      <div id="humidity">
+        <span class="elements"></span>
+        <span class="weather-data"></span>
+      </div>
+      <div id="precipitation">
+        <span class="elements"></span>
+        <span class="weather-data"></span>
+      </div>
+      <div id="precipitation-probability">
+        <span class="elements"></span>
+        <span class="weather-data"></span>
+      </div>
+      <div id="sunrise">
+        <span class="elements"></span>
+        <span class="weather-data"></span>
+      </div>
+      <div id="sunset">
+        <span class="elements"></span>
+        <span class="weather-data"></span>
+      </div>
+      <div id="temperature">
+        <span class="elements"></span>
+        <span class="weather-data"></span>
+      </div>
+      <div id="uv">
+        <span class="elements"></span>
+        <span class="weather-data"></span>
+      </div>
     </div>
 
     <script src="./app.js"></script>
