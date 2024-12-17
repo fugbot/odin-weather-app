@@ -1,26 +1,9 @@
 //https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/london?key=7GHLANZJ3PCUYY5Z7RMJZRV8W
 //console.log(inputValue);
-const text = document.querySelector(".weather");
-/* fetch(
-  "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/london?key=7GHLANZJ3PCUYY5Z7RMJZRV8W",
-  {
-    mode: "cors",
-    }
-    )
-    .then(function (response) {
-      return response.json();
-      })
-      .then(function (response) {
-        console.log(response);
-        }); */
+const weatherContainer = document.querySelector(".weather");
 
 async function getWeather(city) {
   try {
-    // const inputValue = document.querySelector("#city").value;
-    // // if (inputValue.trim().length == 0 || inputValue == "") {
-    // //   ("Please enter a city.");
-    // // }
-    // console.log(inputValue);
     const response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=7GHLANZJ3PCUYY5Z7RMJZRV8W`,
       {
@@ -86,7 +69,7 @@ function displayWeatherData(weatherData) {
     ).textContent = `Temperature: `;
     document.querySelector(
       "#temperature .weather-data"
-    ).textContent = `${weatherData.currentConditions.temp}`;
+    ).textContent = `${weatherData.currentConditions.temp} C`;
 
     document.querySelector("#uv .elements").textContent = `UV Index:`;
     document.querySelector(
@@ -101,6 +84,20 @@ function generateHeadline(city) {
   ).textContent = `Current Weather for ${city}`;
 }
 
+function getWeatherIcon(weatherData) {
+  const iconData = weatherData.currentConditions.icon;
+  if (weatherData) {
+    const iconContainer = document.querySelector(".icon");
+    iconContainer.textContent = "";
+    const svgElem = document.createElement("object");
+    svgElem.type = "image/svg+xml";
+    svgElem.data = `/icons/${iconData}.svg`;
+    svgElem.style.width = "50px";
+    svgElem.style.height = "50px";
+    iconContainer.appendChild(svgElem);
+  }
+}
+
 const submitBtn = document.querySelector("#submit");
 submitBtn.addEventListener("click", async () => {
   const inputValue = document.querySelector("#city").value;
@@ -110,6 +107,7 @@ submitBtn.addEventListener("click", async () => {
   } else {
     const weatherData = await getWeather(inputValue);
     generateHeadline(weatherData.resolvedAddress);
+    getWeatherIcon(weatherData);
     displayWeatherData(weatherData);
     console.log(weatherData);
   }
