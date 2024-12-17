@@ -2,10 +2,15 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.icon svg {
+  width: 16px;
+  height: 16px;
+}
+
 .center {
   position: absolute;
   top: 25%;
-  left: 50%;
+  left: 30%;
   width: 600px;
   height: 600px;
   margin: -100px 0 0 -100px;
@@ -28,6 +33,10 @@
 .weather {
   display: grid;
   gap: 4px;
+}
+
+h1.location {
+  font-size: 120%;
 }
 
 .elements {
