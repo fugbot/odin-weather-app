@@ -2,6 +2,15 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.center {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  margin: -100px 0 0 -100px;
+}
+
 .city-input {
   display: inline-grid;
   gap: 4px;
